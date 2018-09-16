@@ -7,7 +7,7 @@ import urllib.parse
 os.environ['TWITCH_CLIENT_ID'] = 'bsoi6ctwjmevgsovhtwhvsc31qg29o'
 
 
-def hls(channel):
+def open_twitch(channel):
     token_url = 'https://api.twitch.tv/api/channels/{}/access_token'.format(
         channel
     )
@@ -35,12 +35,12 @@ def hls(channel):
 if __name__ == '__main__':
     try:
         if len(sys.argv) > 1:
-            hls(sys.argv[1])
+            open_twitch(os.path.basename(sys.argv[1]))
         else:
-            hls(input('Twitch username: '))
+            open_twitch(os.path.basename(input('Twitch username: ')))
     except (KeyboardInterrupt, SystemExit):
         sys.exit(0)
     except Exception as error:
         print('\nCaught Exception: {}'.format(error))
-        input('\n\nYou may close this window or <enter> to exit...')
+        input('\n\nYou may close this window or <enter> to exit...\n')
         sys.exit(1)
